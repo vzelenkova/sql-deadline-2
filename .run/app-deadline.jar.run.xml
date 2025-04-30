@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="app-deadline.jar" type="JarApplication">
+    <option name="JAR_PATH" value="$PROJECT_DIR$/artifacts/app-deadline.jar" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <envs>
+      <env name="DB_URL" value="jdbc:mysql://localhost:3306/test_db" />
+      <env name="DB_USER" value="test_user" />
+      <env name="DB_PASS" value="test_password" />
+    </envs>
+    <method v="2" />
+  </configuration>
+</component>
