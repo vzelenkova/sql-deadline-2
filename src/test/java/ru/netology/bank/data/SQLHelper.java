@@ -19,8 +19,7 @@ public class SQLHelper {
     public static String getVerificationCode(String login) {
     String code = null;
     String query = "SELECT code FROM auth_codes ac JOIN users u ON ac.user_id = u.id WHERE u.login = ? ORDER BY ac.created DESC LIMIT 1;";
-    try (
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test_db", "test_user", "test_password");
+    try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test_db", "test_user", "test_password");
         PreparedStatement stmt = conn.prepareStatement(query)) 
     {
         stmt.setString(1, login);
@@ -30,10 +29,10 @@ public class SQLHelper {
             }
         }
     } 
-    catch (SQLException e) {
+        catch (SQLException e) {
         e.printStackTrace();
     }
-    return code;
+        return code;
     }
 
     @SneakyThrows
