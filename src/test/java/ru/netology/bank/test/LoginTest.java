@@ -1,9 +1,9 @@
 package ru.netology.bank.test;
 
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.netology.bank.data.DataHelper;
 import ru.netology.bank.data.SQLHelper;
 import ru.netology.bank.page.LoginPage;
 
@@ -11,8 +11,6 @@ import java.sql.SQLException;
 
 import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.bank.data.DataHelper.*;
-import static ru.netology.bank.data.SQLHelper.cleanDatabase;
-import static ru.netology.bank.data.SQLHelper.fillDatabase;
 
 
 public class LoginTest {
@@ -30,11 +28,12 @@ public class LoginTest {
 
     @Test
     public void successLogin() throws SQLException {
-        var authInfo = getAuthInfo();
-        var authorizationCodePage = loginPage.validLogin(authInfo);
-        authorizationCodePage.verifyPageVisible();
-        VerificationCode verificationCode = SQLHelper.getVerificationCode();
-        authorizationCodePage.validVerify(verificationCode);
+        var authInfo = getAuthInfo(); // vasya/qwerty123
+        var verificationPage = loginPage.validLogin(authInfo);
+        verificationPage.verifyPageVisible();
+        var code = SQLHelper.getVerificationCode(authInfo.getLogin());
+        var verificationCode = new DataHelper.VerificationCode(code);
+        verificationPage.validVerify(verificationCode);
     }
 
     @Test
