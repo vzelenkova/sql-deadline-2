@@ -28,12 +28,6 @@ public class LoginTest {
         cleanDatabase();
     }
 
-    @BeforeAll
-    static void tearup() {
-        cleanDatabase();
-        fillDatabase();
-    }
-
     @Test
     public void successLogin() throws SQLException {
         var authInfo = getAuthInfo();
